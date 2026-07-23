@@ -1,0 +1,24 @@
+## Visual Studio ##
+.vs/
+*.user
+*.suo
+
+## Build results ##
+[Bb]in/
+[Oo]bj/
+
+## NuGet ##
+*.nupkg
+**/packages/*
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Rider / VS Code ##
+.idea/
+.vscode/
+
+## OS files ##
+.DS_Store
+Thumbs.db
