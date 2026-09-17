@@ -1,28 +1,33 @@
 using PdfSharp.Fonts;
+using System.Reflection;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts;
 public class ExpensesReportFontResolver : IFontResolver
 {
     public byte[]? GetFont(string faceName)
     {
-        var assembly = typeof(ExpensesReportFontResolver).Assembly;
-        var resourceName = assembly.GetManifestResourceNames()
-            .FirstOrDefault(name => name.EndsWith($"{faceName}.ttf", StringComparison.OrdinalIgnoreCase));
+        var stream = ReadFontFile(faceName);
 
-        if (resourceName is null)
-        {
-            throw new NotImplementedException($"Font '{faceName}' is not embedded as a resource.");
-        }
+        stream ??= ReadFontFile(FontHelper.DEFAULT_FONT);
 
-        using var stream = assembly.GetManifestResourceStream(resourceName)!;
-        using var memoryStream = new MemoryStream();
-        stream.CopyTo(memoryStream);
+        var length = (int)stream!.Length;
 
-        return memoryStream.ToArray();
+        var data = new byte[length];
+
+        stream.Read(buffer: data, offset: 0, count: length);
+
+        return data;
     }
 
     public FontResolverInfo? ResolveTypeface(string familyName, bool bold, bool italic)
     {
         return new FontResolverInfo(familyName);
+    }
+
+    private Stream? ReadFontFile(string faceName)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+
+        return assembly.GetManifestResourceStream($"CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
     }
 }
