@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="UseCases\Expenses\Reports\Pdf\Fonts\Raleway-Black.ttf" />
+    <EmbeddedResource Include="UseCases\Expenses\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
+    <EmbeddedResource Include="UseCases\Expenses\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
+    <EmbeddedResource Include="UseCases\Expenses\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.2.0" />
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="PDFsharp-MigraDoc" Version="6.1.0-preview-3" />
   </ItemGroup>
 
   <ItemGroup>
