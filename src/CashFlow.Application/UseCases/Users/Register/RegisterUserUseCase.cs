@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Repositories;
